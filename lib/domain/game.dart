@@ -1,9 +1,8 @@
 import 'package:corp_game_calc/domain/game_round.dart';
 import 'package:corp_game_calc/domain/score_board.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 import 'player.dart';
-
-import 'package:json_annotation/json_annotation.dart';
 
 part 'game.g.dart';
 
@@ -43,8 +42,7 @@ class Game {
       int lastBeforeEarning =
           gameRounds[gameRounds.length - 2].getRoundedEarnings();
       int avgExpense = (lastEarning + lastBeforeEarning) ~/ 2;
-      int concession = 0;
-      return avgExpense - concession;
+      return avgExpense - avgExpense * 10 ~/ 100;
     }
   }
 

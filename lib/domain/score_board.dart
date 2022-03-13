@@ -1,5 +1,6 @@
 import 'package:corp_game_calc/domain/player_score.dart';
 import 'package:corp_game_calc/domain/score.dart';
+import 'package:corp_game_calc/domain/tax_deducter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'player.dart';
@@ -16,9 +17,14 @@ class ScoreBoard {
   void addScore(Player player, int earning, int profit) {
     List<Score> scores = playerScoreMap.putIfAbsent(
         player.name, () => List.empty(growable: true));
-    int previousProfits = scores.isNotEmpty ? scores.last.totalEarning : 0;
+    int previousEarnings = scores.isNotEmpty ? scores.last.totalEarning : 0;
+    int previousProfits = scores.isNotEmpty ? scores.last.totalProfit : 0;
 
-    scores.add(Score(earning, profit, previousProfits + profit));
+    int newProfit = previousProfits + profit;
+    newProfit = newProfit - TaxDeducter.getDeductibleAmount(newProfit);
+    newProfit = newProfit + TaxDeducter.getGovtFund(newProfit);
+
+    scores.add(Score(earning, profit, previousEarnings + earning, newProfit));
   }
 
   List<PlayerScore> getPlayerScores() {

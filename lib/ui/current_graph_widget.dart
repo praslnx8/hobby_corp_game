@@ -15,7 +15,7 @@ class CurrentProfitGraphWidget extends StatelessWidget {
     int colorCursor = -1;
     _game.getScoreBoard().getPlayerScores().forEach((playerScore) {
       Map<DateTime, double> chartMap = playerScore.scores.asMap().map(
-          (key, value) => MapEntry(DateTime(key), value.earning.toDouble()));
+          (key, value) => MapEntry(DateTime(key), value.totalEarning.toDouble()));
       chartList.add(chartMap);
       colorCursor++;
       colorList.add(Colors.primaries[colorCursor]);
