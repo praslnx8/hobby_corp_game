@@ -7,10 +7,10 @@ class TaxDeducter {
   static int getDeductibleAmount(int amount) {
     int amountToDeduct = 0;
     if (amount > HIGHER_SLAB) {
-      amountToDeduct += (amount - HIGHER_SLAB) * 30 ~/ 100;
-      amountToDeduct += (HIGHER_SLAB - LOWER_SLAB) * 15 ~/ 100;
+      amountToDeduct += (amount - HIGHER_SLAB) * 10 ~/ 100;
+      amountToDeduct += (HIGHER_SLAB - LOWER_SLAB) * 5 ~/ 100;
     } else if (amount > LOWER_SLAB) {
-      amountToDeduct += (amount - LOWER_SLAB) * 15 ~/ 100;
+      amountToDeduct += (amount - LOWER_SLAB) * 5 ~/ 100;
     }
     return amountToDeduct;
   }

@@ -1,5 +1,6 @@
 import 'package:corp_game_calc/ui/current_graph_widget.dart';
 import 'package:corp_game_calc/ui/total_graph_widget.dart';
+import 'package:corp_game_calc/utils/console_log.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 
@@ -39,17 +40,23 @@ class _MyHomePageState extends State<MyHomePage> {
   Game _game = Config.init();
   final _earningFieldController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  final _storage = LocalStorage('data');
+  final _storage = LocalStorage('data.json');
 
   @override
   void initState() {
-    final storedData = _storage.getItem('data');
-    if (storedData == null) {
-      _game.loop();
-    } else {
-      _game = Game.fromJson(storedData);
-    }
+    _game.loop();
     super.initState();
+    _storage.ready.then((value) {
+      final storedData = _storage.getItem('data');
+      setState(() {
+        if (storedData != null) {
+          _game = Game.fromJson(storedData);
+          _game.loop();
+        }
+      });
+    });
+
+
   }
 
   void _loop() {
@@ -90,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(padding: EdgeInsets.all(4)),
             Text('Round ' + _game.getCurrentRound().toString()),
             Padding(padding: EdgeInsets.all(4)),
-            Text('Playing ' + _game.getCurrentPlayer().name),
+            Text('Playing ' + (_game.getCurrentPlayer()?.name ?? '')),
             Form(
                 key: _formKey,
                 child: Row(

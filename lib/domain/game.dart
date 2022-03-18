@@ -42,7 +42,10 @@ class Game {
       int lastBeforeEarning =
           gameRounds[gameRounds.length - 2].getRoundedEarnings();
       int avgExpense = (lastEarning + lastBeforeEarning) ~/ 2;
-      return avgExpense - avgExpense * 10 ~/ 100;
+      if(avgExpense > 100) {
+        return avgExpense - (avgExpense * 30 ~/ 100);
+      }
+      return avgExpense - (avgExpense * 15 ~/ 100);
     }
   }
 
@@ -52,7 +55,10 @@ class Game {
     scoreBoard.addScore(currentPlayer, earning, profit);
   }
 
-  Player getCurrentPlayer() {
+  Player? getCurrentPlayer() {
+    if(gameRounds.isEmpty) {
+      return null;
+    }
     return gameRounds.last.getCurrentPlayer();
   }
 
@@ -61,6 +67,9 @@ class Game {
   }
 
   int getCurrentExpense() {
+    if(gameRounds.isEmpty) {
+      return 0;
+    }
     return gameRounds.last.expense;
   }
 
