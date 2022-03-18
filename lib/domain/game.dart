@@ -46,7 +46,7 @@ class Game {
           gameRounds[gameRounds.length - 2].getRoundedEarnings();
       int avgExpense = (lastEarning + lastBeforeEarning) ~/ 2;
       if(avgExpense > 100) {
-        return avgExpense - (avgExpense * 30 ~/ 100);
+        return avgExpense - (avgExpense * 20 ~/ 100);
       }
       return avgExpense - (avgExpense * 15 ~/ 100);
     }
