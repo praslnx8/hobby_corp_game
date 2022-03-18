@@ -10,13 +10,14 @@ ScoreBoard _$ScoreBoardFromJson(Map<String, dynamic> json) => ScoreBoard(
       (json['players'] as List<dynamic>)
           .map((e) => Player.fromJson(e as Map<String, dynamic>))
           .toList(),
-    )..playerScoreMap = (json['playerScoreMap'] as Map<String, dynamic>).map(
+      (json['playerScoreMap'] as Map<String, dynamic>).map(
         (k, e) => MapEntry(
             k,
             (e as List<dynamic>)
                 .map((e) => Score.fromJson(e as Map<String, dynamic>))
                 .toList()),
-      );
+      ),
+    );
 
 Map<String, dynamic> _$ScoreBoardToJson(ScoreBoard instance) =>
     <String, dynamic>{

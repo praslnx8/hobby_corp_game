@@ -13,7 +13,11 @@ class GameRound {
   int currentPlayerIndex = -1;
   int currentTotalEarnings = 0;
 
-  GameRound(this.players, this.expense);
+
+  GameRound(this.players, this.expense, this.currentPlayerIndex,
+      this.currentTotalEarnings);
+
+  GameRound.init(this.players, this.expense);
 
   int play(int earning) {
     currentTotalEarnings += earning;

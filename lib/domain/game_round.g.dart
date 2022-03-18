@@ -11,9 +11,9 @@ GameRound _$GameRoundFromJson(Map<String, dynamic> json) => GameRound(
           .map((e) => Player.fromJson(e as Map<String, dynamic>))
           .toList(),
       json['expense'] as int,
-    )
-      ..currentPlayerIndex = json['currentPlayerIndex'] as int
-      ..currentTotalEarnings = json['currentTotalEarnings'] as int;
+      json['currentPlayerIndex'] as int,
+      json['currentTotalEarnings'] as int,
+    );
 
 Map<String, dynamic> _$GameRoundToJson(GameRound instance) => <String, dynamic>{
       'players': instance.players.map((e) => e.toJson()).toList(),

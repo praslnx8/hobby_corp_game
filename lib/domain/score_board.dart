@@ -9,7 +9,10 @@ part 'score_board.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class ScoreBoard {
-  ScoreBoard(this.players);
+
+  ScoreBoard(this.players, this.playerScoreMap);
+
+  ScoreBoard.init(this.players);
 
   final List<Player> players;
   Map<String, List<Score>> playerScoreMap = Map.identity();
@@ -38,4 +41,5 @@ class ScoreBoard {
       _$ScoreBoardFromJson(json);
 
   Map<String, dynamic> toJson() => _$ScoreBoardToJson(this);
+
 }

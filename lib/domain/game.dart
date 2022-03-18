@@ -12,21 +12,24 @@ class Game {
   final ScoreBoard scoreBoard;
   final List<GameRound> gameRounds;
 
-  Game(this.players)
-      : scoreBoard = ScoreBoard(players),
+
+  Game(this.players, this.scoreBoard, this.gameRounds);
+
+  Game.init(this.players)
+      : scoreBoard = ScoreBoard.init(players),
         gameRounds = List.empty(growable: true);
 
   void loop() {
     if (gameRounds.isEmpty) {
       List<Player> gameRoundPlayers = List.from(players);
       gameRoundPlayers.shuffle();
-      gameRounds.add(GameRound(gameRoundPlayers, _getAvgExpense()));
+      gameRounds.add(GameRound.init(gameRoundPlayers, _getAvgExpense()));
     }
     GameRound gameRound = gameRounds.last;
     if (gameRound.isFinished()) {
       List<Player> gameRoundPlayers = List.from(players);
       gameRoundPlayers.shuffle();
-      gameRound = GameRound(gameRoundPlayers, _getAvgExpense());
+      gameRound = GameRound.init(gameRoundPlayers, _getAvgExpense());
       gameRounds.add(gameRound);
     }
     gameRound.loop();

@@ -50,8 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
       final storedData = _storage.getItem('data');
       setState(() {
         if (storedData != null) {
+          ConsoleLog.i('data' , storedData);
           _game = Game.fromJson(storedData);
-          _game.loop();
         }
       });
     });

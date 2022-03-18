@@ -9,6 +9,6 @@ class Config {
     players.add(Player("VRN"));
     players.add(Player("3XX"));
 
-    return Game(players);
+    return Game.init(players);
   }
 }
