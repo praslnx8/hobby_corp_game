@@ -1,4 +1,5 @@
 import 'package:corp_game_calc/domain/game.dart';
+import 'package:corp_game_calc/ui/color_utils.dart';
 import 'package:fl_animated_linechart/fl_animated_linechart.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class TotalEarningGraphWidget extends StatelessWidget {
               MapEntry(DateTime(key), value.totalProfit.toDouble()));
       chartList.add(chartMap);
       colorCursor++;
-      colorList.add(Colors.primaries[colorCursor]);
+      colorList.add(ColorUtils.colorList[colorCursor]);
       units.add("P");
     });
 
